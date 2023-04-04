@@ -1,0 +1,9 @@
+FROM python:3.10
+
+COPY part2.py /
+
+COPY lab2Full.txt /
+
+RUN pip install flask
+
+CMD ["python", "./part2.py"]

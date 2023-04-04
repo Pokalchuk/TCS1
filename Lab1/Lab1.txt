@@ -1,0 +1,78 @@
+STEP 4
+C:\Users\apoka>docker run -d -p 80:80 docker/getting-started
+Unable to find image 'docker/getting-started:latest' locally
+latest: Pulling from docker/getting-started
+c158987b0551: Pull complete
+1e35f6679fab: Pull complete
+cb9626c74200: Pull complete
+b6334b6ace34: Pull complete
+f1d1c9928c82: Pull complete
+9b6f639ec6ea: Pull complete
+ee68d3549ec8: Pull complete
+33e0cbbb4673: Pull complete
+4f7e34c2de10: Pull complete
+Digest: sha256:d79336f4812b6547a53e735480dde67f8f8f7071b414fbd9297609ffb989abc1
+Status: Downloaded newer image for docker/getting-started:latest
+00eba11c560d1d8d0a848cfc7ec35be98b089fddab8ed27150246f9416be0379
+
+STEP 5, 6
+C:\Users\apoka>docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete
+Digest: sha256:ffb13da98453e0f04d33a6eee5bb8e46ee50d08ebe17735fc0779d0349e889e9
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+
+C:\Users\apoka>docker images hello-world 
+ REPOSITORY    TAG       IMAGE ID       CREATED         SIZE 
+ hello-world   latest    feb5d9fea6a5   18 months ago   13.3kB   
+
+STEP 7
+C:\Users\apoka>docker pull ellerbrock/alpine-bash-git
+Using default tag: latest
+latest: Pulling from ellerbrock/alpine-bash-git
+c87736221ed0: Pull complete
+eadf65686d00: Pull complete
+Digest: sha256:46262050f227c4515a501607873d760961ee32d92fa5b8cf9c89aca3c564d008
+Status: Downloaded newer image for ellerbrock/alpine-bash-git:latest
+docker.io/ellerbrock/alpine-bash-git:latest
+
+C:\Users\apoka>docker run -it -d --name lab1 --entrypoint /bin/bash ellerbrock/alpine-bash-git
+aa7eb98ffba131525fdf0b0cfa849a053556011147cfe86748ec3045cfa539e6
+
+C:\Users\apoka>docker exec -it lab1 bash
+bash-4.4$ exit
+exit
+
+STEP 8
+C:\Users\apoka>docker exec -it lab1 bash
+bash-4.4$ ls
+bash-4.4$ cd /
+bash-4.4$ ls
+bin    dev    etc    home   lib    media  mnt    proc   root   run    sbin   srv    sys    tmp    usr    var
+
+
+STEP 9
+
+bash-4.4$ git --version
+git version 2.18.1
+bash-4.4$ cd download
+bash: cd: download: No such file or directory
+bash-4.4$ cd home/download
+bash-4.4$ git clone https://github.com/Pokalchuk/TCS
+Cloning into 'TCS'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+bash-4.4$ exit
+exit
+
+
+STEP 10
+C:\Users\apoka>docker restart lab1    
+lab1    
+C:\Users\apoka>docker exec -it lab1 bash       
+bash-4.4$ ls    
+TCS   
