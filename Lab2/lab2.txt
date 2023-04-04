@@ -61,10 +61,11 @@ C:\NUWEE\SECOND TERM MAGIST\TCS\Lab2>docker build . -f Dockerfile.base -t myapp
 C:\NUWEE\SECOND_TERM\TCS\Lab2>docker run myapp
 Hello, World!
 
-STEP 6
+STEP 6 (Closed manually) to close with command use docker stop and docker rm
+Check CREATED AND STATUS (was closed)
 C:\NUWEE\SECOND TERM MAGIST\TCS\Lab2>docker container ls -a
 CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                      PORTS                NAMES
-efa8ca894b0c   myapp                        "python ./app.py"        19 seconds ago   Exited (0) 18 seconds ago                        interesting_saha             eloquent_rhodes
+efa8ca894b0c   myapp                        "python ./app.py"        29 seconds ago   Exited (0) 18 seconds ago                        interesting_saha             eloquent_rhodes
 
 
 STEP 7
