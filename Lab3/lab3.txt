@@ -1,0 +1,50 @@
+C:\Windows\system32>docker run -d -p 80:80 docker/getting-started
+55e60c06f11814352c6a9735dbb056948fbcd7846044e677dcfaf88668a89931
+
+
+C:\NUWEE\SECOND_TERM\TCS\Lab3>cd C:\NUWEE\SECOND_TERM\TCS\Lab3\web_server
+
+C:\NUWEE\SECOND_TERM\TCS\Lab3\web_server>index.html
+
+C:\NUWEE\SECOND_TERM\TCS\Lab3\web_server>docker build -f dockerfile.txt .
+[+] Building 0.5s (3/3) FINISHED
+ => [internal] load build definition from dockerfile.txt                                                                                                        0.0s
+ => => transferring dockerfile: 601B                                                                                                                            0.0s
+ => [internal] load .dockerignore                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                 0.0s
+ => ERROR [internal] load metadata for mcr.microsoft.com/windows/servercore:ltsc2019                                                                            0.4s
+------
+ > [internal] load metadata for mcr.microsoft.com/windows/servercore:ltsc2019:
+------
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: no match for platform in manifest sha256:b65dbde86b756beb973029c88e545457aa469a7e082c2d99bf984ba17d0a898c: not found
+
+
+FIXED THE ISSUE WITH
+switch containers to windows (rewrite code for windows to create a server)
+
+C:\NUWEE\SECOND_TERM\TCS\Lab3\web_server>docker build -f dockerfile.txt .
+
+Step 1/5 : FROM mcr.microsoft.com/windows/servercore:ltsc2016
+ltsc2016: Pulling from windows/servercore
+3889bb8d808b: Pull complete
+40bebc7062f7: Pull complete
+Digest: sha256:c121118ba0dec8692b30ced415952455054674783331558111bf30b77c7b3f68
+Status: Downloaded newer image for mcr.microsoft.com/windows/servercore:ltsc2016
+ ---> 554445c6b6f3
+Step 2/5 : RUN powershell -Command     $ErrorActionPreference = 'Stop';     Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VS17/binaries/httpd-2.4.57-win64-VS17.zip -OutFile c:\httpd.zip ;     Expand-Archive -Path c:\httpd.zip -DestinationPath C:\ ;     Move-Item C:\httpd-2.4.57-win64-VS17\Apache24 C:\Apache24 ;     Remove-Item C:\httpd.zip ;     Remove-Item -Recurse -Force C:\httpd-2.4.57-win64-VS17
+ ---> Running in 18ab7fd86a15
+Invoke-WebRequest : The request was aborted: Could not create SSL/TLS secure
+channel.
+At line:1 char:34
++ ... e = 'Stop'; Invoke-WebRequest -Method Get -Uri https://www.apacheloun ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:Htt
+   pWebRequest) [Invoke-WebRequest], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShe
+   ll.Commands.InvokeWebRequestCommand
+
+The command 'cmd /S /C powershell -Command     $ErrorActionPreference = 'Stop';     Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VS17/binaries/httpd-2.4.57-win64-VS17.zip -OutFile c:\httpd.zip ;     Expand-Archive -Path c:\httpd.zip -DestinationPath C:\ ;     Move-Item C:\httpd-2.4.57-win64-VS17\Apache24 C:\Apache24 ;     Remove-Item C:\httpd.zip ;     Remove-Item -Recurse -Force C:\httpd-2.4.57-win64-VS17' returned a non-zero code: 1
+
+
+
+FOR A NOW CAN'T FIX ISSUE WITH APACHE (TRYING DIFFERENT SOURCES, BUT DON'T WORK)

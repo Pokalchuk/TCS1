@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
+RUN powershell -Command \
+    $ErrorActionPreference = 'Stop'; \
+    $TLS12 = [System.Security.Authentication.SslProtocols]::Tls12; \
+    [System.Net.ServicePointManager]::SecurityProtocol = $TLS12; \
+    Invoke-WebRequest -Method Get -Uri https://downloads.apache.org/httpd/httpd-2.4.57.tar.gz -OutFile c:\httpd-2.4.57-win64-VS17.tar.gz; \
+    Add-Type -AssemblyName System.IO.Compression.FileSystem; \
+    [System.IO.Compression.ZipFile]::CreateFromDirectory('C:\httpd-2.4.57-win64-VS17.tar.gz', 'C:\httpd-2.4.57-win64-VS17.zip'); \
+    Expand-Archive -Path c:\httpd-2.4.57-win64-VS17.tar.gz -DestinationPath C:\ ; \
+    Move-Item C:\httpd-2.4.57-win64-VS17\Apache24 C:\Apache24 ; \
+    Remove-Item C:\httpd-2.4.57-win64-VS17.tar.gz ; \
+    Remove-Item -Recurse -Force C:\httpd-2.4.57-win64-VS17
+COPY web_server/ /Apache24/htdocs/
+EXPOSE 80
+CMD ["C:/Apache24/bin/httpd.exe", "-w"]
