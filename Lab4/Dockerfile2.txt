@@ -1,0 +1,8 @@
+FROM python:3.10
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY time_reader.py .
+
+CMD ["python", "time_reader.py"]

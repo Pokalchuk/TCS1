@@ -1,0 +1,16 @@
+version: "3.10"
+
+services:
+  time_writer:
+    build:
+      context: .
+      dockerfile: Dockerfile.txt
+    volumes:
+      - C:/NUWEE/SECOND_TERM/TCS/Lab4/time_checker:/time_checker:rw
+
+  time_reader:
+    build:
+      context: .
+      dockerfile: Dockerfile2.txt
+    volumes:
+      - C:/NUWEE/SECOND_TERM/TCS/Lab4/time_checker:/time_checker:rw
