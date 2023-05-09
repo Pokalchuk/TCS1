@@ -1,0 +1,50 @@
+[+] Running 20/20wnloads\kafka-stack-docker-compose-master\kafka-stack-docker-compose-master>cdC:\NUWEE\SECOND_TERM\TCS\[+] Running 0/20
+ - kafka Pulled                                                                                                                                                                                              12.1s
+   - 42c077c10790 Pull complete                                                                                                                                                                               3.2s
+   - 44b062e78fd7 Pull complete                                                                                                                                                                               3.4s
+   - b3ba9647f279 Pull complete                                                                                                                                                                               3.5s
+   - 10c9a58bd495 Pull complete                                                                                                                                                                               6.4s
+   - ed9bd501c190 Pull complete                                                                                                                                                                               6.5s
+   - 03346d650161 Pull complete                                                                                                                                                                               8.2s
+   - 539ec416bc55 Pull complete                                                                                                                                                                               8.3s
+ - zookeeper Pulled                                                                                                                                                                                          26.6s
+   - a49367d57626 Pull complete                                                                                                                                                                               6.7s
+   - eeec2f37f4a0 Pull complete                                                                                                                                                                              20.3s
+   - ae805807db54 Pull complete                                                                                                                                                                              20.5s
+   - c553584e96cc Pull complete                                                                                                                                                                              20.6s
+   - 28769e081b94 Pull complete                                                                                                                                                                              21.1s
+   - 151cf144f79d Pull complete                                                                                                                                                                              21.2s
+   - 04292bb11042 Pull complete                                                                                                                                                                              21.3s
+   - c2e0c70921ea Pull complete                                                                                                                                                                              21.4s
+   - e8d7f71a6ca4 Pull complete                                                                                                                                                                              21.7s
+   - 23bf725623b5 Pull complete                                                                                                                                                                              22.7s
+   - 741950d4b2e7 Pull complete                                                                                                                                                                              22.7s
+[+] Running 4/4
+ - Container lab5-consumer-1   Created                                                                                                                                                                        0.2s
+ - Container lab5-producer-1   Created                                                                                                                                                                        0.2s
+ - Container lab5-zookeeper-1  Created                                                                                                                                                                        0.0s
+ - Container lab5-kafka-1      Created
+:\NUWEE\SECOND_TERM\TCS\Lab5>docker compose up -d
+[+] Running 4/4
+ - Container lab5-consumer-1   Started                                                                                                                                                                        1.0s
+ - Container lab5-zookeeper-1  Started                                                                                                                                                                        0.7s
+ - Container lab5-kafka-1      Started                                                                                                                                                                        2.0s
+ - Container lab5-producer-1   Started                                                                                                                                                                  1.0s
+
+C:\NUWEE\SECOND_TERM\TCS\Lab5>docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS         PORTS                    NAMES
+16696062687a   docker/getting-started   "/docker-entrypoint.…"   10 seconds ago   Up 9 seconds   0.0.0.0:80->80/tcp       cool_clarke
+b2fb0b5f00da   wurstmeister/kafka       "start-kafka.sh"         5 minutes ago    Up 4 seconds   0.0.0.0:9092->9092/tcp   lab5-kafka-1
+
+
+C:\NUWEE\SECOND_TERM\TCS\Lab5>docker compose up -d
+[+] Running 5/5
+ - Container lab5-consumer-1   Started                                                                                                                                                                        1.3s
+ - Container lab5-producer-1   Started                                                                                                                                                                        1.8s
+ - Container lab5-zookeeper-1  Recreated                                                                                                                                                                      0.2s
+ - Container lab5-kafka-1      Started                                                                                                                                                                        2.4s                                                                                                                                                                      1.3s
+
+C:\NUWEE\SECOND_TERM\TCS\Lab5>docker ps
+CONTAINER ID   IMAGE                             COMMAND                  CREATED         STATUS         PORTS                                        NAMES
+0cdb0892f602   wurstmeister/kafka                "start-kafka.sh"         5 seconds ago   Up 3 seconds   0.0.0.0:9092->9092/tcp                       lab5-kafka-1
+65240a6a2546   confluentinc/cp-zookeeper:7.3.2   "/etc/confluent/dock…"   6 seconds ago   Up 4 seconds   2888/tcp, 0.0.0.0:2181->2181/tcp, 3888/tcp   zookeeper
